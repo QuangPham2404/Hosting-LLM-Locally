@@ -60,3 +60,21 @@ The model used for the first smoke-test is ```qwen3.5:2b```
 
 We see now why people say ollama is more user-friendly.
 
+We can verify the hardware that ollama uses using ```nvidia-smi``` or ```ollama ps``` when the model is running.
+
+```txt
+NAME          ID              SIZE      PROCESSOR    CONTEXT    UNTIL
+qwen3.5:2b    324d162be6ca    2.4 GB    100% GPU     4096       4 minutes from now
+
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 566.26                 Driver Version: 566.26         CUDA Version: 12.7     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                  Driver-Model | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4060 ...  WDDM  |   00000000:01:00.0  On |                  N/A |
+| N/A   48C    P4             57W /   60W |    4421MiB /   8188MiB |     90%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+```
