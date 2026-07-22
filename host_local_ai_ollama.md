@@ -52,6 +52,17 @@ Refer to their official website: https://docs.ollama.com/windows
 
 Remember to configure OLLAMA_MODELS env variable to point the installation path for models into the directory you want with sufficient storage
 
+### How hosting a local model server with Ollama works:
+
+1. Install Ollama on your local machine (it's a lightweight server application).
+2. Pull a model using ollama pull <model-name> (e.g., ollama pull llama3.1 or ollama pull mistral). This downloads the model weights to your machine — this is the "installing the model" step you mentioned.
+3. Ollama runs a local server (by default at http://localhost:11434) that exposes a REST API you can hit for things like /api/generate, /api/chat, /api/embeddings, etc.
+4. You can then interact with the model either through:
+   * The CLI directly (ollama run llama3.1)
+   * The REST API (via curl, Python requests, etc.)
+   * Client libraries (Ollama has official Python and JS libraries)
+   * Many third-party apps and frameworks (like LangChain, LlamaIndex, Open WebUI) that support Ollama as a backend
+
 ## Checkpoint 4: Running the first model with Ollama
 
 Use command ```ollama run <model_id>```. 
@@ -207,7 +218,7 @@ Environment var | Setting Ollama environmental variables such as ```OLLAMA_MODEL
 * **CLI**: You send your prompt via Ollama's command line directly on your computer. The model is started in this method using: ```ollama run <model_name>```
 * **Direct API**: The model receives the prompt via JSON request using ```curl```. Note if the the Ollama server is started (else start it with ```ollama serve```), you DO NOT need the command ```ollama run <model_name>``` - just remeber specifying the model in the JSON request.
 
-A note: the CLI and direct API method are both CLIENTS of the Ollama server! The whole flow of the 2 methods are shown below. The cleanest mental model of how Ollama works is: *Ollama server owns and runs the model. Clients communicate with the server and request inference.*
+A note: When you run Ollama on your computer, it uses YOUR hardware to host and model server and the CLI and direct API method are both CLIENTS of the that server! The whole flow of the 2 methods are shown below. The cleanest mental model of how Ollama works is: *Ollama server owns and runs the model. Clients communicate with the server and request inference.*
 
 ```txt
 # The CLI method
@@ -378,3 +389,5 @@ A note is that the ```ollama run``` command will automatically install the model
 | `ollama push username/my-model` | `POST /api/push` |
 | `ollama rm gemma3` | `DELETE /api/delete` |
 | `ollama --version` | `GET /api/version` |
+
+## Check point 9: Hosting a minimal client using Ollama
