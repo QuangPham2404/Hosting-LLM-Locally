@@ -1,0 +1,8 @@
+# Local configuration containing the Telegram bot token
+ollama/Simple-Ollama-Telegram-Bot/.env
+
+# Project-specific Python virtual environment
+ollama/Simple-Ollama-Telegram-Bot/.venv/
+
+# Python bytecode cache files
+ollama/Simple-Ollama-Telegram-Bot/__pycache__/
